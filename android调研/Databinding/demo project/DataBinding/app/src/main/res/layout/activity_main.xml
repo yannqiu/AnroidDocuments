@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.example.peiyu_wang.databinding.entity.StudentObserve" />
+
+        <import type="android.view.View.OnClickListener" />
+
+        <variable
+            name="stu"
+            type="StudentObserve" />
+
+        <variable
+            name="clicklistener"
+            type="OnClickListener" />
+
+    </data>
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="com.example.peiyu_wang.databinding.MainActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@{stu.name}"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@{stu.address}"
+            android:textSize="16sp" />
+        <!--事件绑定-->
+        <Button
+            android:id="@+id/change"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:onClick="@{clicklistener::onClick}"
+            android:text="change Text" />
+
+        <Button
+            android:id="@+id/toNext"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="To RecycleView" />
+
+    </LinearLayout>
+</layout>

@@ -1,0 +1,63 @@
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.5"
+    }
+}
+
+apply plugin: "org.sonarqube"
+
+apply plugin: 'com.android.application'
+
+sonarqube {
+    properties {
+        property "sonar.projectKey","Andfix"
+        //项目的名称
+        property "sonar.projectName","Andfix"
+        //定义要分析的源文件夹,默认是src目录
+        property "sonar.sources","src\\main\\java\\com\\example\\andfix"
+        //表示要去掉某些文件
+        //*表示任意个字符
+        //**表示任意个文件夹
+        property "sonar.exclusions", "**/*Generated.java"
+
+    }
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "26.0.0"
+
+    defaultConfig {
+        applicationId "com.example.andfix"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.alipay.euler:andfix:0.5.0@aar'
+    compile 'com.android.support:appcompat-v7:25.0.1'
+    testCompile 'junit:junit:4.12'
+}
